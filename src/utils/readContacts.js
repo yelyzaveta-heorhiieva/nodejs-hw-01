@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 export const readContacts = async () => {
   try {
     const data = await fs.readFile(PATH_DB, 'utf8');
-    return data;
+    return JSON.parse(data);
   } catch (err) {
     console.error(err);
   }

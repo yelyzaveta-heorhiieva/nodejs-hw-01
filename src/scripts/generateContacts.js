@@ -5,13 +5,9 @@ import { writeContacts } from '../utils/writeContacts.js';
 
 const generateContacts = async (number) => {
     try {
-        const data = await readContacts();
-        const arr = JSON.parse(data);
-    for (let i = 0; i < number; i++) {
-      const contact = createFakeContact();
-          arr.push(contact);
-    }
-    await writeContacts(JSON.stringify(arr));
+      const data = await readContacts();
+      const contacts = Array(number).fill(0).map(createFakeContact);
+    await writeContacts([...data, ...contacts]);
   } catch (err) {
     console.error(err);
   }
